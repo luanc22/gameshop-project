@@ -1,0 +1,35 @@
+.game-form{
+    width: 30rem;
+    max-width: 90%;
+    margin: auto;
+}
+
+.form-control{
+    margin: 1rem 0;
+}
+
+.form-control label,
+.form-control input {
+    display: block;
+    width: 100%;
+}
+
+.form-control input{
+    border: 1px solid;
+    font: inherit;
+    border-radius: 3px;
+}
+
+button{
+    font: inherit;
+    border: 1px solid black;
+    border-radius: 3px;
+    background: white;
+    cursor: pointer;
+}
+
+button:hover,
+button:active {
+    background-color: rgb(98, 218, 92);  
+    color: black;
+}
