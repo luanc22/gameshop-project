@@ -5,13 +5,17 @@ const rootDir = require('../helpers/path');
 
 const router = express.Router();
 
+const games = [];
+
 router.get('/add-game', (req, res, next) => {
     res.sendFile(path.join(rootDir, 'views', 'add-game.html'));
 })
 
 router.post('/add-game', (req, res, next) => {
-    console.log(req.body);
+    games.push({ title: req.body.title });
     res.redirect('/');
 })
 
-module.exports = router;
+exports.routes = router;
+exports.games = games;
+
