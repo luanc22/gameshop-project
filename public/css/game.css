@@ -18,6 +18,7 @@
     border: 1px solid;
     font: inherit;
     border-radius: 3px;
+    width: 50%;
 }
 
 button{
@@ -30,6 +31,26 @@ button{
 
 button:hover,
 button:active {
-    background-color: rgb(98, 218, 92);  
+    background-color: rgb(22, 139, 94);  
     color: black;
+}
+
+.game-item {
+    width: 20rem;
+    max-width: 95%;
+}
+
+.game__title {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.game__price {
+    text-align: center;
+    color: #4d4d4d;
+    margin-bottom: 0.5rem;
+}
+
+.game__description {
+    text-align: center;
 }

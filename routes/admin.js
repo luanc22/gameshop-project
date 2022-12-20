@@ -8,8 +8,8 @@ const router = express.Router();
 const games = [];
 
 router.get('/add-game', (req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', 'add-game.html'));
-})
+    res.render('add-game', {pageTitle: 'Add Game', path: '/admin/add-game'})
+});
 
 router.post('/add-game', (req, res, next) => {
     games.push({ title: req.body.title });

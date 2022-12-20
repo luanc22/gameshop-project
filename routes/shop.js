@@ -7,7 +7,8 @@ const router = express.Router();
 const adminData = require('./admin');
 
 router.get('/', (req, res, next) => {
-    res.render('shop');
+    const games = adminData.games;
+    res.render('shop', {gms: games, pageTitle: 'GameShop', path: '/'});
 });
 
 module.exports = router;    
