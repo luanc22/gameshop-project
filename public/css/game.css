@@ -9,16 +9,26 @@
 }
 
 .form-control label,
-.form-control input {
+.form-control input,
+.form-control textarea {
     display: block;
     width: 100%;
 }
 
-.form-control input{
-    border: 1px solid;
+.form-control input,
+.form-control textarea{
+    margin-bottom: 0.5rem;
+    border: 2px solid black;
     font: inherit;
     border-radius: 3px;
-    width: 50%;
+    width: 100%;
+}
+
+.form-control input:focus,
+.form-control textarea:focus{
+    outline: none !important;
+    border-color: rgb(22, 139, 94);
+    box-shadow: 0 0 3px rgb(22, 139, 94);
 }
 
 button{
@@ -52,5 +62,13 @@ button:active {
 }
 
 .game__description {
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.game__genre {
+    padding-top: 25px;
+    padding-bottom: 0px;
     text-align: center;
 }

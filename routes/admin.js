@@ -1,21 +1,13 @@
 const path = require('path');
 const express = require('express');
-
-const rootDir = require('../helpers/path');
+const adminController = require('../controllers/admin');
 
 const router = express.Router();
 
-const games = [];
+router.get('/add-game', adminController.getAddGame);
 
-router.get('/add-game', (req, res, next) => {
-    res.render('add-game', {pageTitle: 'Add Game', path: '/admin/add-game'})
-});
+router.post('/add-game', adminController.postAddGame);
 
-router.post('/add-game', (req, res, next) => {
-    games.push({ title: req.body.title });
-    res.redirect('/');
-})
+router.get('/games', adminController.getAdminGames);
 
-exports.routes = router;
-exports.games = games;
-
+module.exports = router;

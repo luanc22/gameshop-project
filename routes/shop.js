@@ -1,14 +1,18 @@
 const path = require('path');
 const express = require('express');
-
-const rootDir = require('../helpers/path');
+const shopController = require('../controllers/shop');
+const gamesController = require('../controllers/admin');
 
 const router = express.Router();
-const adminData = require('./admin');
 
-router.get('/', (req, res, next) => {
-    const games = adminData.games;
-    res.render('shop', {gms: games, pageTitle: 'GameShop', path: '/'});
-});
+router.get('/', shopController.getIndex);
 
-module.exports = router;    
+router.get('/cart', shopController.getCart);
+
+router.get('/orders', shopController.getOrders);
+
+router.get('/checkout', shopController.getCheckout);
+
+router.get('/games', shopController.getGames);
+
+module.exports = router;
