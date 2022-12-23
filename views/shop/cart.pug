@@ -1,8 +1,18 @@
 extends ../layouts/main-layout.pug
 
 block styles 
+    link(rel='stylesheet', href='/css/game.css')
 
 block content
     main
-        h1 Welcome to your cart! 
+        if gms.length > 0
+            each g in gms 
+                ul
+                    li 
+                        p #{g.gameData.title} - (#{g.qty})
+                        form(action="/cart-delete-item" method="POST")
+                            input(type="hidden", value=g.gameData.id, name="gameId")
+                            button.btn(type="submit") Delete
+        else
+            h1 No products on your cart, go shopping!
         

@@ -14,11 +14,13 @@ block content
                         .card__image
                             img(src=game.imageUrl, alt=game.title)
                         .card__content
-                            h2.game__price #{game.price}
+                            h2.game__price $#{game.price}
                             p.game__description #{game.description} 
                             p.game__genre #{game.genre}
                         .card__actions 
-                            form(action='/add-to-cart', method='POST')
-                                button.btn Add to Cart
+                            a.btn(href='/games/' + game.id) Details
+                            form(action="/cart", method="POST")
+                                button.btn(type="submit") Add to Cart
+                                input(type="hidden", name="gameId", value=game.id)
         else 
             h1 No games to sell at this moment, come back later!

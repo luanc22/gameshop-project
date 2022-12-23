@@ -72,3 +72,8 @@ button:active {
     padding-bottom: 0px;
     text-align: center;
 }
+
+.game__image img {
+    width: 20%;
+    margin: 1rem;
+}

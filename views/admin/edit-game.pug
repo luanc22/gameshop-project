@@ -1,0 +1,22 @@
+extends ../layouts/main-layout.pug
+
+block styles 
+    link(rel='stylesheet', href='/css/game.css')
+
+block content
+    main
+        form.game-form(action='/admin/edit-game' method='POST')
+            .form-control
+                label(for='title') Game Title
+                input(type='text', name='title', value=game.title)#title
+                label(for='imageUrl') Cover Image
+                input(type='text', name='imageUrl', value=game.imageUrl)#imageUrl
+                label(for='genre') Genre
+                input(type='text', name='genre', value = value=game.genre)#genre
+                label(for='price') Price
+                input(type='text', name='price', step='0.01', value=game.price)#price
+                label(for='description') Description
+                textarea(name="description", rows="5")#description #{game.description}
+                input(type='hidden', value=game.id, name='gameId')#gameId
+            button.btn(type='submit') Update Game
+
