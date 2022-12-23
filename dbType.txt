@@ -1,1 +1,1 @@
-SQL project
+NoSQL project
