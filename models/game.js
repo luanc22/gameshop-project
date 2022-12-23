@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const { getGames } = require('../controllers/admin');
+const Cart = require('./cart');
 
 const pathSave = path.join(path.dirname(process.mainModule.filename), 
     'data',
@@ -18,7 +18,8 @@ const getGamesFromFile = callback => {
 }
 
 module.exports = class Game {
-    constructor(title, imageUrl, description, genre, price) {
+    constructor(id, title, imageUrl, description, genre, price) {
+        this.id = id;
         this.title = title;
         this.imageUrl = imageUrl;
         this.description = description;
@@ -26,12 +27,35 @@ module.exports = class Game {
         this.price = price;
     }
 
-    save(){
+    save() {
         getGamesFromFile(games => {
+          if (this.id) {
+            const existingGameIndex = games.findIndex(
+                game => game.id === this.id
+            );
+            const updatedGames = [...games];
+            updatedGames[existingGameIndex] = this;
+            fs.writeFile(pathSave, JSON.stringify(updatedGames), err => {
+              console.log(err);
+            });
+          } else {
+            this.id = Math.random().toString();
             games.push(this);
-            fs.writeFile(pathSave, JSON.stringify(games), (err) => {
-                if(err != null)
-                    console.log(err);
+            fs.writeFile(pathSave, JSON.stringify(games), err => {
+              console.log(err);
+            });
+          }
+        });
+      }
+
+    static deleteById(id) {
+        getGamesFromFile(games => {
+            const game = games.find(game => game.id === id);
+            const updatedGames = games.filter(g => g.id !== id);
+            fs.writeFile(pathSave, JSON.stringify(updatedGames), err => {
+                if(!err){
+                    Cart.deleteGame(id, game.price);
+                }
             });
         });
     }
@@ -39,4 +63,11 @@ module.exports = class Game {
     static fetchAll(callback) {
         getGamesFromFile(callback);
     }
+
+    static findById(id, callback) {
+        getGamesFromFile(games => {
+            const game = games.find(g => g.id === id);
+            callback(game);
+        })
+    }   
 }

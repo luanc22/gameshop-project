@@ -18,8 +18,9 @@ block content
                             p.game__description #{game.description} 
                             p.game__genre #{game.genre}
                         .card__actions 
-                            a.btn(href='/admin/edit-game') Edit
+                            a.btn(href='/admin/edit-game/' + game.id + '?edit=true') Edit
                             form(action='/admin/delete-game', method='POST')
+                                input(type='hidden', value=game.id, name='gameId')#gameId
                                 button.btn(type='submit') Delete
         else 
             h1 No games to sell at this moment, come back later!
